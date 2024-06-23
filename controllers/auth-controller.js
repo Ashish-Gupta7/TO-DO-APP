@@ -57,7 +57,7 @@ const login = async (req, res) => {
         }
       });
     } catch (err) {
-      dbgr(`Error during bcrypt-compare: ${err}`)
+      dbgr(`Error during bcrypt-compare: ${err}`);
       return res.status(500).send("Internal Server Error");
     }
   } catch (err) {

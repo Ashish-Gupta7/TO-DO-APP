@@ -3,7 +3,10 @@ const dbgr = require("debug")("development:generateToken");
 
 const generateToken = (user) => {
   try {
-    jwt.sign({ email: user.email, id: user._id }, process.env.JWT_SECRET_KEY);
+    return jwt.sign(
+      { email: user.email, id: user._id },
+      process.env.JWT_SECRET_KEY
+    );
   } catch (err) {
     dbgr(`Error during generateToken: ${err}`);
   }

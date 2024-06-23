@@ -9,7 +9,7 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/profile/:name/logout", isLoggedIn, (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
   res.cookie("token", "", {
     expires: new Date(0),
     httpOnly: true,
