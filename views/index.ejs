@@ -1,0 +1,48 @@
+<%- include("./partials/headers.ejs") %>
+
+  <div class="mt-24">
+    <div class="flex flex-col items-center justify-center gap-4">
+      <h1 class="text-2xl font-semibold text-[#6652ff]">Welcome to Your To-Do App</h1>
+      <h3 class="opacity-70 tracking-wide">Stay organized and keep track of your tasks effortlessly.</h3>
+    </div>
+    <div class="logreg flex flex-col items-center justify-center gap-4 mt-24">
+      <a href="/login" class="block px-5 py-2 bg-[#6652ff] border border-zinc-100/50 rounded-md">Log
+        in Your Account</a>
+      <a href="/register" class="block px-5 py-2 border border-zinc-100/50 rounded-md">Sign
+        up Your
+        Account</a>
+    </div>
+    <div class="flex flex-col items-center justify-center mt-20">
+      <p class="opacity-70 tracking-wide">By getting started you agree
+        with</p>
+      <a href="" class="text-[#6652ff] font-semibold">Terms & Conditions</a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    let shadow = document.querySelectorAll("div .logreg a");
+    const initialShadow = "0px 0px 0px 0px rgba(255,255,255,0)";
+    const finalShadow = "20px 10px 20px 1px rgba(255,255,255,0.02), -20px -10px 20px 1px rgba(255,255,255,0.02), -20px 10px 20px 1px rgba(255,255,255,0.02), 20px -10px 20px 1px rgba(255,255,255,0.02)";
+    shadow.forEach(elm => {
+      elm.addEventListener("mouseenter", () => {
+        gsap.to(elm, {
+          scale: 1.05,
+          duration: .3,
+          boxShadow: finalShadow
+        });
+      });
+      elm.addEventListener("mouseleave", () => {
+        gsap.to(elm, {
+          scale: 1,
+          duration: .3,
+          boxShadow: initialShadow
+        });
+      });
+    })
+  </script>
+
+
+  <%- include("./partials/footer.ejs") %>

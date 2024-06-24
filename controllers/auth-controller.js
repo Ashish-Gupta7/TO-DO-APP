@@ -7,6 +7,7 @@ const { generateToken } = require("../utils/auth-token-utils");
 const register = async (req, res) => {
   try {
     let { name, email, password } = req.body;
+    console.log(password);
     let user = await userModel.findOne({ email });
 
     if (user) return res.status(400).send("User Already Exists");
@@ -27,7 +28,7 @@ const register = async (req, res) => {
           res.cookie("token", token);
           res.status(201).send("registered");
         } catch (err) {
-          dbgr(`Error during user creation: ${err}`);
+          dbgr(`Error during user creation: ${err.message}`);
           return res.status(500).send("Internal Server Error");
         }
       });

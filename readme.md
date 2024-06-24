@@ -18,4 +18,4 @@
 
 ## day 4
 1. use postman check all possible errors.
-2. 
+2. index.ejs

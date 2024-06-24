@@ -8,7 +8,8 @@ const generateToken = (user) => {
       process.env.JWT_SECRET_KEY
     );
   } catch (err) {
-    dbgr(`Error during generateToken: ${err}`);
+    dbgr(`Error during generateToken: ${err.message}`);
+    throw err;
   }
 };
 
