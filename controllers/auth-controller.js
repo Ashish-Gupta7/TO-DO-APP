@@ -7,7 +7,6 @@ const { generateToken } = require("../utils/auth-token-utils");
 const register = async (req, res) => {
   try {
     let { name, email, password } = req.body;
-    console.log(password);
     let user = await userModel.findOne({ email });
 
     if (user) return res.status(400).send("User Already Exists");

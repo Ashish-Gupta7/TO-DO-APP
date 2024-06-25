@@ -1,19 +1,102 @@
 <%- include("./partials/headers.ejs") %>
 
-  <div>
+  <div class="flex items-center justify-around mt-24">
     <div>
-      <h1>Welcome back!</h1>
-      <p>Please log in to access your tasks.</p>
+      <h1 class="text-3xl font-semibold text-[#6652ff]">Welcome back!</h1>
+      <p class="text-xl mt-3 opacity-50">Log in to continue organizing your day.</p>
     </div>
-    <div>
-      <h1></h1>
-      <form action="">
-        <div class="px-4 py-2 border">
-          <input class="bg-transparent outline-none" type="email" name="email" id="" required>
-          <i class="ri-mail-line"></i>
+
+    <!-- login div -->
+    <div class="flex flex-col justify-center gap-4">
+      <h1 class="text-5xl font-semibold mb-6">Login</h1>
+      <form action="/login" method="post" autocomplete="off" class="flex flex-col gap-4 w-auto">
+        <div class="email relative px-5 py-5 border rounded-xl cursor-text">
+          <label for="email" class="emailLabel cursor-text absolute">Email*</label>
+          <input class="bg-transparent outline-none w-96 h-5" type="email" name="email" id="email" required
+            autocomplete="off">
+          <i class="ri-mail-line cursor-text"></i>
+        </div>
+        <div class="password relative px-5 py-5 border rounded-xl cursor-text">
+          <label for="password" class="passwordLabel cursor-text absolute">Password*</label>
+          <input class="bg-transparent outline-none w-96 h-5" type="password" name="password" id="password" required
+            autocomplete="off">
+          <i class="ri-lock-2-line cursor-text"></i>
+        </div>
+        <div class="flex justify-end">
+          <a href="">Forgot your password?</a>
+        </div>
+        <div
+          class="submit w-full text-center pointer-events-none mt-4 border-[0px] rounded-full bg-[#6652ff] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-500 after:rounded-full after:h-full after:pointer-events-none hover:after:bg-[#ffffff]/5">
+          <input class="w-full h-full px-5 py-5 font-semibold rounded-full cursor-pointer pointer-events-auto" type="submit" value="Start Planning">
         </div>
       </form>
     </div>
   </div>
+
+  <!-- javaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    let email = document.querySelector(".email");
+    let emailLabel = document.querySelector(".emailLabel");
+    let emailInput = document.querySelector(".email #email");
+    let remixEmail = document.querySelector(".email i")
+    let password = document.querySelector(".password");
+    let passwordLabel = document.querySelector(".passwordLabel");
+    let passwordInput = document.querySelector(".password #password");
+    let remixPassword = document.querySelector(".password i");
+
+    const anim = (lable, field, remixEmail) => {
+      gsap.to(lable, {
+        scale: .9,
+        top: 1,
+        left: 18,
+        opacity: .3,
+        duration: .1
+      });
+      gsap.to(field, {
+        borderColor: "rgba(255, 255, 255, .3)",
+        duration: .2
+      });
+      gsap.to(remixEmail, {
+        color: "rgba(255, 255, 255, .3)",
+        duration: .2
+      })
+    }
+
+    const resetInput = (reset, lable, field, remix) => {
+      if (reset.value === "") {
+        gsap.to(lable, {
+          duration: .2,
+          top: "",
+          opacity: 1
+        });
+        gsap.to(field, {
+          duration: .2,
+          borderColor: ""
+        });
+        gsap.to(remix, {
+          duration: .2,
+          color: ""
+        });
+      }
+    }
+
+    email.addEventListener("click", () => {
+      emailInput.focus();
+      anim(emailLabel, email, remixEmail);
+    });
+    password.addEventListener("click", () => {
+      passwordInput.focus();
+      anim(passwordLabel, password, remixPassword);
+    });
+    emailInput.addEventListener("blur", () => {
+      resetInput(emailInput, emailLabel, email, remixEmail);
+    });
+    passwordInput.addEventListener("blur", () => {
+      resetInput(passwordInput, passwordLabel, password, remixPassword);
+    });
+  </script>
 
   <%- include("./partials/footer.ejs") %>

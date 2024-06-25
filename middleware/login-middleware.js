@@ -7,7 +7,6 @@ const isLoggedIn = (req, res, next) => {
 
     if (cookieToken) {
       jwt.verify(cookieToken, process.env.JWT_SECRET_KEY, (err, decoded) => {
-        dbgr(decoded);
         if (err) {
           dbgr(`Error during isLoggedIn token verify: ${err}`);
           return next(new Error("Invalid Token"));

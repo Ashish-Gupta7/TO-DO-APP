@@ -19,3 +19,7 @@
 ## day 4
 1. Check all possible routes using postman.
 2. index.ejs
+
+## day 5
+1. login.ejs
+2. register.ejs
